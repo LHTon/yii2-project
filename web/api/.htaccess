@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FITENAME} !-f
+RewriteCond %{REQUEST_FITENAME} !-d
+RewriteRule . index.php
