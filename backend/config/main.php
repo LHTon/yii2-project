@@ -21,7 +21,7 @@ return [
     'defaultRoute' => 'index',
 
     // 默认布局文件 优先级 控制器-》配置文件-》系统默认
-    'layout' => 'main',
+//    'layout' => 'main',
 
     // 组件
     'components' => [

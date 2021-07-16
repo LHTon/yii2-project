@@ -3,9 +3,12 @@
 namespace backend\behaviors;
 
 
+use backend\models\Menu;
+use Yii;
 use yii\base\Behavior;
 use yii\base\Controller;
-use yii\widgets\Menu;
+use yii\web\ForbiddenHttpException;
+
 
 class RbacBehavior extends Behavior
 {
@@ -57,7 +60,27 @@ class RbacBehavior extends Behavior
 
         // 权限检查
         if (Menu::checkRule($rule)) {
+            return true;
+        }
 
+        // 终止执行action
+        $event->isValid = false;
+        $this->denyAccess();
+        return false;
+    }
+
+    /**
+     * Denies the access of the user. HTTP 403 您没有执行此操作的权限
+     * The default implementation will redirect the user to the login page if he is a guest;
+     * if the user is already logged, a 403 HTTP exception will be thrown.
+     * @throws ForbiddenHttpException if the user is already logged in.
+     */
+    protected function denyAccess()
+    {
+        if (Yii::$app->user->getIsGuest()) {
+            Yii::$app->user->loginRequired();
+        } else {
+            throw new ForbiddenHttpException(Yii::t('yii', 'You are not allowed to perform this action.'));
         }
     }
 }
