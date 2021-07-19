@@ -19,7 +19,7 @@ class LoginController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'rule' => [
+                'rules' => [
                     [
                         'actions' => ['login', 'error', 'logout'],
                         'allow' => true,

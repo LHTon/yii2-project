@@ -21,7 +21,7 @@ return [
     'defaultRoute' => 'index',
 
     // 默认布局文件 优先级 控制器-》配置文件-》系统默认
-//    'layout' => 'main',
+    'layout' => 'main',
 
     // 组件
     'components' => [
@@ -30,6 +30,7 @@ return [
         'request' => [
             'class' => 'common\core\Request',
             'baseUrl' => Yii::getAlias('@backendUrl'),
+//            'csrfParam' => '_csrf-backend',
         ],
 
         // 身份认证类 默认 yii\web\user,
@@ -42,19 +43,6 @@ return [
             'identityCookie' => ['name' => '__admin_identity', 'httpOnly' => true],
             'idParam' => '__admin',
         ],
-//        'session' => [
-//            // this is the name of the session cookie used for login on the backend
-//            'name' => 'advanced-backend',
-//        ],
-//        'log' => [
-//            'traceLevel' => YII_DEBUG ? 3 : 0,
-//            'targets' => [
-//                [
-//                    'class' => 'yii\log\FileTarget',
-//                    'levels' => ['error', 'warning'],
-//                ],
-//            ],
-//        ],
 
         // 数据库RBAC权限控制
         'authManager' => [
